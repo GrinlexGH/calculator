@@ -1,10 +1,10 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.5)
 
 if(NOT "${CMAKE_GENERATOR}" STREQUAL "MinGW Makefiles")
-    message(FATAL_ERROR "Unsupported generator selected! Please use MinGW Makefiles.")
+	message(FATAL_ERROR "Unsupported generator selected! Please use MinGW Makefiles.")
 endif()
 
-project(Calculator)
+project(calculator)
 
 set(CMAKE_C_COMPILER "gcc" CACHE INTERNAL "" FORCE)
 message(STATUS "C compiler: ${CMAKE_C_COMPILER}")
@@ -16,23 +16,11 @@ if(NOT CMAKE_C_COMPILER MATCHES ".*gcc.*" OR NOT CMAKE_CXX_COMPILER MATCHES ".*g
 	message(FATAL_ERROR "Requires g++ and gcc compilers.")
 endif()
 
-if (CMAKE_C_COMPILER_ID MATCHES "GNU")
-    if (CMAKE_C_COMPILER_VERSION VERSION_LESS "11.4")
-        message(FATAL_ERROR "Requires GCC version 11.4 or higher!")
-    endif()
-endif()
-
-if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS "11.4")
-        message(FATAL_ERROR "Requires G++ version 11.4 or higher!")
-    endif()
-endif()
-
 set(CMAKE_CXX_STANDARD 20)
 
 add_compile_options(-Wall -Wextra -Werror)
 
-set(CMAKE_EXE_LINKER_FLAGS "-static")
+set(CMAKE_EXE_LINKER_FLAGS "-lstdc++ -static -ffunction-sections -fdata-sections -Wl,--gc-sections")
 
 set(SOURCES
 	src/main.cpp
