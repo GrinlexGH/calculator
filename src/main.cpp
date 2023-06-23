@@ -22,8 +22,8 @@ void getConsoleSize(int& columns, int& rows) {
 }
 
 int main() {
-    int columns, rows;
-    getConsoleSize(columns, rows);
-    std::cout << "Console size: " << columns << " columns x " << rows << " rows" << std::endl;
-    return 0;
+	int columns, rows;
+	getConsoleSize(columns, rows);
+	
+	return 0;
 }
