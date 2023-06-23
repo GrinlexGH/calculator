@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
-if(NOT "${CMAKE_GENERATOR}" STREQUAL "MinGW Makefiles")
+if(NOT "${CMAKE_GENERATOR}" STREQUAL "MinGW Makefiles"
+	OR NOT "${CMAKE_GENERATOR}" STREQUALOR "Unix Makefiles")
 	message(FATAL_ERROR "Unsupported generator selected! Please use MinGW Makefiles.")
 endif()
 
