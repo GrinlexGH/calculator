@@ -6,7 +6,7 @@ LDFLAGS = -lstdc++ -static -ffunction-sections -fdata-sections -Wl,--gc-sections
 
 MIN_GCC_VERSION = 11.4
 
-SOURCES = src/main.cpp
+SOURCES = src/main.cpp src/console.cpp
 EXECUTABLE = calculator
 
 .PHONY: all clean
@@ -14,7 +14,7 @@ EXECUTABLE = calculator
 all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(SOURCES)
-	$(CC) $(CXXFLAGS) $(CFLAGS) $(LDFLAGS) -o ./build/$@ $(SOURCES)
+	$(CC) $(CXXFLAGS) $(CFLAGS) $(LDFLAGS) $(SOURCES) -o ./build/$@
 
 clean:
 	rm -f $(EXECUTABLE)

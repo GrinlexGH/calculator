@@ -24,6 +24,8 @@ set(CMAKE_EXE_LINKER_FLAGS "-lstdc++ -static -ffunction-sections -fdata-sections
 
 set(SOURCES
 	src/main.cpp
+	src/console.hpp
+	src/console.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})
