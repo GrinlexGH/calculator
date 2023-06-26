@@ -14,7 +14,7 @@ EXECUTABLE = calculator
 all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(SOURCES)
-	$(CC) $(CXXFLAGS) $(CFLAGS) $(LDFLAGS) $(SOURCES) -o ./build/$@
+	$(CC) $(CXXFLAGS) $(CFLAGS) $(SOURCES) -o ./build/$@ $(LDFLAGS)
 
 clean:
 	rm -f $(EXECUTABLE)
