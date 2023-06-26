@@ -1,7 +1,13 @@
+#include <iostream>
 #include "console.hpp"
 
 console::console() {
 
+}
+
+void console::pause(void) {
+	std::wcout << L"Press any key to continue"
+	getch();
 }
 
 #ifdef _WIN32
@@ -9,8 +15,12 @@ console::console() {
 #include <Windows.h>
 #include <conio.h>
 
-wchar_t console::getch() {
+wchar_t console::getch(void) {
 	return _getch();
+}
+
+wchar_t console::getche(void) {
+	return _getche();
 }
 
 void console::getConsoleSize(uint32_t& width, uint32_t& height) {
@@ -28,16 +38,28 @@ void console::getConsoleSize(uint32_t& width, uint32_t& height) {
 #include <fcntl.h>
 #include <sys/ioctl.h>
 
-wchar_t console::getch() {
+wchar_t console::getch_(bool echo) {
 	struct termios oldattr, newattr;
-	int ch;
-	tcgetattr( STDIN_FILENO, &oldattr );
+	wchar_t ch;
+	tcgetattr(STDIN_FILENO, &oldattr);
 	newattr = oldattr;
-	newattr.c_lflag &= ~( ICANON | ECHO );
-	tcsetattr( STDIN_FILENO, TCSANOW, &newattr );
+	newattr.c_lflag &= ~ICANON;
+	if(echo)
+		newattr.c_lflag |= ECHO;
+	else
+		newattr.c_lflag &= ~ECHO;
+	tcsetattr(STDIN_FILENO, TCSANOW, &newattr);
 	ch = getchar();
-	tcsetattr( STDIN_FILENO, TCSANOW, &oldattr );
+	tcsetattr(STDIN_FILENO, TCSANOW, &oldattr);
 	return ch;
+}
+
+wchar_t console::getch(void) {
+	return getch_(false);
+}
+
+wchar_t console::getche(void) {
+	return getch_(true);
 }
 
 void console::getConsoleSize(uint32_t& width, uint32_t& height) {
