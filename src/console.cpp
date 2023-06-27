@@ -2,12 +2,16 @@
 #include "console.hpp"
 
 console::console() {
-
+	
 }
 
 void console::pause(void) {
-	std::wcout << L"Press any key to continue"
+	std::wcout << L"Press any key to continue";
 	getch();
+}
+
+void console::print(const wchar_t* message) {
+
 }
 
 #ifdef _WIN32
