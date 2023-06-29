@@ -14,7 +14,7 @@ console::console() {
 
 		for (auto& lang : localization.items()) {
 			if (lang.value().contains("selected") && lang.value()["selected"].is_boolean() && lang.value()["selected"]) {
-				if (lang.key() == "en") {		//sorry, but I cand make it by switch
+				if (lang.key() == "en") {		//sorry, but I cant make it by switch
 					language = en;
 				} else if (lang.key() == "ru") {
 					language = ru;
