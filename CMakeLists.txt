@@ -20,12 +20,35 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_compile_options(-Wall -Wextra -Werror)
 
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+	add_compile_options(-g -Og)
+elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
+	add_compile_options(-Ofast)
+endif()
+
 set(CMAKE_EXE_LINKER_FLAGS "-lstdc++ -static -ffunction-sections -fdata-sections -Wl,--gc-sections")
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Debug)
+elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
+	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Release)
+endif()
 
 set(SOURCES
 	src/main.cpp
-	src/console.hpp
 	src/console.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+	add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+		${CMAKE_SOURCE_DIR}/src/resources ${CMAKE_BINARY_DIR}/Debug/resources
+	)
+elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
+	add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+		${CMAKE_SOURCE_DIR}/src/resources ${CMAKE_BINARY_DIR}/Release/resources
+	)
+endif()

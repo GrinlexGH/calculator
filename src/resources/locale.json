@@ -1,0 +1,12 @@
+{
+	"en":
+	{
+		"selected": false,
+		"console.pause": "Press any key to continue"
+	},
+	"ru":
+	{
+		"selected": true,
+		"console.pause": "Нажмите любую клавишу чтобы продолжить"
+	}
+}

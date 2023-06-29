@@ -3,15 +3,18 @@ To compile this code on Windows you need to install
 * mingw-w64
 then, you need to open the "build" folder in console
 and type
-	cmake ..
-To build it just type
-	cmake --build .
-in the "build" folder
+	build-debug.bat
+for debug, and
+	build-release.bat
+for release
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 To compile it on Termux you need to install
 * make
 * build-essential
-* ndk-multilib
-* ndk-multilib-native-static
+* ndk-multilib					//for termux
+* ndk-multilib-native-static	//for termux
 then, you need to type
 	make
+for release, and
+	make debug
+for debug

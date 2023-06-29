@@ -11,10 +11,22 @@ EXECUTABLE = calculator
 
 .PHONY: all clean
 
-all: $(EXECUTABLE)
+all: $(EXECUTABLE)_release copy_resources_release
 
-$(EXECUTABLE): $(SOURCES)
-	$(CC) $(CXXFLAGS) $(CFLAGS) $(SOURCES) -o ./build/$@ $(LDFLAGS)
+debug: CFLAGS += -g
+debug: $(EXECUTABLE)_debug copy_resources_debug
+
+$(EXECUTABLE)_release: $(SOURCES)
+		$(CC) $(CXXFLAGS) $(CFLAGS) $(SOURCES) -o ./build/Release/$(EXECUTABLE) $(LDFLAGS)
+
+$(EXECUTABLE)_debug: $(SOURCES)
+		$(CC) $(CXXFLAGS) $(CFLAGS) $(SOURCES) -o ./build/Debug/$(EXECUTABLE) $(LDFLAGS)
+
+copy_resources_debug:
+	cp -R src/resources/ build/Debug
+
+copy_resources_release:
+	cp -R src/resources/ build/Release
 
 clean:
 	rm -f $(EXECUTABLE)

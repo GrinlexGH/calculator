@@ -1,7 +1,35 @@
 #include <iostream>
+#include <fstream>
+#include "nlohmann/json.hpp"
 #include "console.hpp"
 
+using json = nlohmann::json;
+
 console::console() {
+	std::ifstream file("resources/locale.json");
+	json localization;
+
+	if (file.is_open()) {
+		file >> localization;
+
+		for (auto& lang : localization.items()) {
+			if (lang.value().contains("selected") && lang.value()["selected"].is_boolean() && lang.value()["selected"]) {
+				if (lang.key() == "en") {		//sorry, but I cand make it by switch
+					language = en;
+				} else if (lang.key() == "ru") {
+					language = ru;
+				} else {
+					
+				}
+				break;
+			}
+		}
+	}
+	std::cout << "lang: " << language << std::endl;
+
+	if (language == 0) {
+
+	}
 	
 }
 
@@ -11,7 +39,13 @@ void console::pause(void) {
 }
 
 void console::print(const wchar_t* message) {
+	std::ifstream lcfile("resources/locale.json");
+	json localization;
+	localization["s"] = message;
+	if(lcfile.is_open()) {
+		lcfile >> localization;
 
+	}
 }
 
 #ifdef _WIN32

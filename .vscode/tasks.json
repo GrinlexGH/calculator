@@ -1,0 +1,29 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "build windows release",
+			"command": "${workspaceFolder}/build-release.bat",
+			"group": "build"
+		},
+		{
+			"type": "shell",
+			"label": "build windows debug",
+			"command": "${workspaceFolder}/build-debug.bat",
+			"group": "build"
+		},
+		{
+			"type": "shell",
+			"label": "build linux release",
+			"command": "${workspaceFolder}/build-release.sh",
+			"group": "build"
+		},
+		{
+			"type": "shell",
+			"label": "build linux debug",
+			"command": "${workspaceFolder}/build-debug.sh",
+			"group": "build"
+		}
+	]
+}

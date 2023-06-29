@@ -1,6 +1,8 @@
 #pragma once
 #include <cstdint>
 
+enum languages {en = 1, ru = 2};
+
 class console {
 public:
 	console();
@@ -10,6 +12,7 @@ public:
 	static void pause(void);
 	static void print(const wchar_t* message);
 private:
+	languages language;
 #ifdef __unix__
 	static wchar_t getch_(bool echo);
 #endif
