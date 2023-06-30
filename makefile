@@ -1,6 +1,6 @@
 CC = gcc
 CXX = g++
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I./src/libs/nlohmann/single_include/
 CXXFLAGS = -std=c++20
 LDFLAGS = -lstdc++ -static -ffunction-sections -fdata-sections -Wl,--gc-sections
 
