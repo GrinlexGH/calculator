@@ -41,6 +41,10 @@ set(SOURCES
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 
+target_include_directories(${PROJECT_NAME} PRIVATE
+	${CMAKE_SOURCE_DIR}/src/libs/nlohmann/single_include
+)
+
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 	add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
 		COMMAND ${CMAKE_COMMAND} -E copy_directory
