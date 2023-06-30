@@ -6,18 +6,22 @@
 using json = nlohmann::json;
 
 console::console() {
-	std::ifstream file("resources/locale.json");
+	std::ifstream file("C:/Users/444/Documents/GitHub/calculator/build/Release/resources/locale.json");
 	json localization;
-
+	std::cout << "Construuctorcalled" << std::endl;
 	if (file.is_open()) {
 		file >> localization;
-
+		std::cout << "File opened" << std::endl;
 		for (auto& lang : localization.items()) {
+			std::cout << "Key:" << lang.key() << std::endl;
 			if (lang.value().contains("selected") && lang.value()["selected"].is_boolean() && lang.value()["selected"]) {
+				std::cout << "Contains bollean true" << std::endl;
 				if (lang.key() == "en") {		//sorry, but I cant make it by switch
 					language = en;
+					std::cout << "en" << std::endl;
 				} else if (lang.key() == "ru") {
 					language = ru;
+					std::cout << "ru" << std::endl;
 				} else {
 					
 				}
@@ -30,7 +34,7 @@ console::console() {
 	if (language == 0) {
 
 	}
-	
+	file.close();
 }
 
 void console::pause(void) {
