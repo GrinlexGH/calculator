@@ -76,6 +76,14 @@
 		"xlocmes": "cpp",
 		"xlocmon": "cpp",
 		"xloctime": "cpp",
-		"xtree": "cpp"
+		"xtree": "cpp",
+		"csignal": "cpp",
+		"cstdarg": "cpp",
+		"deque": "cpp",
+		"random": "cpp",
+		"regex": "cpp",
+		"set": "cpp",
+		"unordered_set": "cpp",
+		"variant": "cpp"
 	}
 }

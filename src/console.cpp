@@ -5,8 +5,11 @@
 
 using json = nlohmann::json;
 
-console::console() {
-	std::ifstream file("C:/Users/444/Documents/GitHub/calculator/build/Release/resources/locale.json");
+//console::console() {
+/*	std::filesystem::path executablePath = std::filesystem::path(argv0).parent_path();
+	std::filesystem::path filePath = executablePath / "resource" / "data.json";
+	std::string filePathStr = filePath.generic_string();
+	std::ifstream file("resources/locale.json");
 	json localization;
 	std::cout << "Construuctorcalled" << std::endl;
 	if (file.is_open()) {
@@ -34,8 +37,8 @@ console::console() {
 	if (language == 0) {
 
 	}
-	file.close();
-}
+	file.close();*/
+//}
 
 void console::pause(void) {
 	std::wcout << L"Press any key to continue";
